@@ -1,0 +1,247 @@
+{% extends '_base.html' %}
+
+{% block title %}
+    Hello, Welcome I'm Fiqri
+{% endblock title %}
+
+{% block content %}
+    <section id="index"
+             class="flex flex-col h-[50vh] w-screen bg-white text-wrap lg:flex lg:flex-row lg:justify-between lg:items-center lg:px-48 text-gray-700 basis-3">
+        <div class="lg:w-1/2">
+            <img class="inline-block size-10 rounded-full ring-2 mb-4 ring-white"
+                 src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                 alt="">
+            <h1 class="text-4xl text-wrap text-gray-700">
+                Hello, I'm Fiqri Khoirul Muttaqin
+            </h1>
+        </div>
+        <div class="lg:w-1/2">
+            <div class="mb-8">
+                <h1 class="text-4xl text-wrap text-gray-700 mb-4">
+                    A Backend Developer based in Bandung, Indonesia
+                </h1>
+                <p>
+                    Back-end Developer with 3 years of experience in crafting innovative applications that priorities
+                    user
+                    needs and enhance
+                    system performance. Proficient in PHP, Typescript, and Go, driving the development of robust web
+                    solutions and Restful
+                    API, ensuring seamless integration and improved user experiences.
+                </p>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <a href="" class="w-fit p-4 bg-gray-700 hover:bg-gray-800  text-white rounded-md">Talk With Me</a>
+                <a href="#selected_works" class="text-gray-700 hover:text-gray-800">See My Works</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="working_experience" class="h-screen w-screen bg-amber-50 px-10 py-28 text-gray-700 flex">
+        <div class="w-1/2">
+            <h1 class="text-center text-4xl capitalize mb-16">working experience</h1>
+            <div class="px-24">
+                <div class="flex flex-col">
+                    {% for experience in work_experiences %}
+                        <div class="flex flex-row gap-4 items-center mb-8">
+                            <img class="inline-block size-10 rounded-md ring-2 ring-white"
+                                 src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                                 alt="">
+
+                            <div>
+                                <p>{{ experience.role }} at {{ experience.company }}</p>
+                                <p class="text-gray-500">
+                                    {{ experience.start_date }} - {% if experience.end_date is None %}Present {% else %} {{ experience.end_date }} {% endif %}
+                                </p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+
+        <div class="w-1/2">
+            <h1 class="text-center text-4xl capitalize mb-16">skills</h1>
+            <div class="px-24">
+                <div class="flex flex-col">
+                    <div class="flex flex-row gap-4 items-center">
+                        <img class="inline-block size-10 rounded-md ring-2 ring-white"
+                             src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+                             alt="">
+
+                        <div>
+                            <p>Backend Developer at PT. Waizly technology</p>
+                            <p class="text-gray-500">April 2024 - Present</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="selected_works" class="min-h-screen w-screen bg-amber-50 px-10 py-28 text-gray-700">
+        <h1 class="text-center text-4xl capitalize mb-16">selected works</h1>
+        <div class="grid grid-cols-4 px-24 gap-4 p-4">
+            <div class="bg-white rounded-md shadow-md p-4 text-gray-700">
+                <img src="https://placehold.co/600x400" alt="" class="rounded-md mb-4">
+                <p class="mb-4">Project Title</p>
+
+                <div class="mb-4">
+                    <p>Company</p>
+                    <p>Project Years</p>
+                </div>
+
+                <p class="mb-4">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate earum facere ipsa iusto maxime
+                    molestiae tempore.
+                </p>
+
+                <button class="w-fit py-2 px-3 bg-gray-700 hover:bg-gray-800  text-white rounded-md">
+                    View details work
+                </button>
+            </div>
+
+            <div class="bg-white rounded-md shadow-md p-4 text-gray-700">
+                <img src="https://placehold.co/600x400" alt="" class="rounded-md mb-4">
+                <p class="mb-4">Project Title</p>
+
+                <div class="mb-4">
+                    <p>Company</p>
+                    <p>Project Years</p>
+                </div>
+
+                <p class="mb-4">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate earum facere ipsa iusto maxime
+                    molestiae tempore.
+                </p>
+
+                <button class="w-fit py-2 px-3 bg-gray-700 hover:bg-gray-800  text-white rounded-md">
+                    View details work
+                </button>
+            </div>
+
+            <div class="bg-white rounded-md shadow-md p-4 text-gray-700">
+                <img src="https://placehold.co/600x400" alt="" class="rounded-md mb-4">
+                <p class="mb-4">Project Title</p>
+
+                <div class="mb-4">
+                    <p>Company</p>
+                    <p>Project Years</p>
+                </div>
+
+                <p class="mb-4">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate earum facere ipsa iusto maxime
+                    molestiae tempore.
+                </p>
+
+                <button class="w-fit py-2 px-3 bg-gray-700 hover:bg-gray-800  text-white rounded-md">
+                    View details work
+                </button>
+            </div>
+
+            <div class="bg-white rounded-md shadow-md p-4 text-gray-700">
+                <img src="https://placehold.co/600x400" alt="" class="rounded-md mb-4">
+                <p class="mb-4">Project Title</p>
+
+                <div class="mb-4">
+                    <p>Company</p>
+                    <p>Project Years</p>
+                </div>
+
+                <p class="mb-4">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate earum facere ipsa iusto maxime
+                    molestiae tempore.
+                </p>
+
+                <button class="w-fit py-2 px-3 bg-gray-700 hover:bg-gray-800  text-white rounded-md">
+                    View details work
+                </button>
+            </div>
+
+            <div class="bg-white rounded-md shadow-md p-4 text-gray-700">
+                <img src="https://placehold.co/600x400" alt="" class="rounded-md mb-4">
+                <p class="mb-4">Project Title</p>
+
+                <div class="mb-4">
+                    <p>Company</p>
+                    <p>Project Years</p>
+                </div>
+
+                <p class="mb-4">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate earum facere ipsa iusto maxime
+                    molestiae tempore.
+                </p>
+
+                <button class="w-fit py-2 px-3 bg-gray-700 hover:bg-gray-800  text-white rounded-md">
+                    View details work
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <section id="index"
+             class="flex flex-col h-[50vh] w-screen bg-amber-50 text-wrap lg:flex lg:flex-row lg:justify-between lg:items-center lg:px-48 text-gray-700">
+        Testimony
+    </section>
+
+    <section id="selected_works" class="w-screen bg-amber-50 px-10 py-28 text-gray-700">
+        <h1 class="text-center text-4xl capitalize mb-16">Articles</h1>
+        <div class="grid grid-cols-4 px-24 gap-4 p-4">
+            <div class="bg-white rounded-md shadow-md p-4 text-gray-700">
+                <img src="https://placehold.co/600x400" alt="" class="rounded-md mb-4">
+                <p class="mb-4">Article Title</p>
+
+                <p class="mb-4">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate earum facere ipsa iusto maxime
+                    molestiae tempore.
+                </p>
+
+                <button class="w-fit py-2 px-3 bg-gray-700 hover:bg-gray-800  text-white rounded-md">
+                    Show more
+                </button>
+            </div>
+
+            <div class="bg-white rounded-md shadow-md p-4 text-gray-700">
+                <img src="https://placehold.co/600x400" alt="" class="rounded-md mb-4">
+                <p class="mb-4">Article Title</p>
+
+                <p class="mb-4">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate earum facere ipsa iusto maxime
+                    molestiae tempore.
+                </p>
+
+                <button class="w-fit py-2 px-3 bg-gray-700 hover:bg-gray-800  text-white rounded-md">
+                    Show more
+                </button>
+            </div>
+
+            <div class="bg-white rounded-md shadow-md p-4 text-gray-700">
+                <img src="https://placehold.co/600x400" alt="" class="rounded-md mb-4">
+                <p class="mb-4">Article Title</p>
+
+                <p class="mb-4">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate earum facere ipsa iusto maxime
+                    molestiae tempore.
+                </p>
+
+                <button class="w-fit py-2 px-3 bg-gray-700 hover:bg-gray-800  text-white rounded-md">
+                    Show more
+                </button>
+            </div>
+
+            <div class="bg-white rounded-md shadow-md p-4 text-gray-700">
+                <img src="https://placehold.co/600x400" alt="" class="rounded-md mb-4">
+                <p class="mb-4">Article Title</p>
+
+                <p class="mb-4">
+                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Cupiditate earum facere ipsa iusto maxime
+                    molestiae tempore.
+                </p>
+
+                <button class="w-fit py-2 px-3 bg-gray-700 hover:bg-gray-800  text-white rounded-md">
+                    Show more
+                </button>
+            </div>
+        </div>
+    </section>
+{% endblock content %}
