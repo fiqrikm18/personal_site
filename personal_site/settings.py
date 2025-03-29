@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'compressor',
     'landing_page',
     'system_details',
+    'ckeditor',
 ]
 
 MIDDLEWARE = [
@@ -123,6 +124,9 @@ STATICFILES_DIRS = [
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
 
+MEDIA_URL = "assets/"
+MEDIA_ROOT = BASE_DIR / "assets"
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
@@ -137,3 +141,18 @@ STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
     'django.contrib.staticfiles.finders.AppDirectoriesFinder',
 )
+
+CKEDITOR_STORAGE_BACKEND = 'django.core.files.storage.FileSystemStorage'
+CKEDITOR_UPLOAD_PATH = "assets/"
+CKEDITOR_RESTRICT_BY_USER = False
+CKEDITOR_REQUIRE_STAFF = False
+CKEDITOR_ALLOW_NONIMAGE_FILES = False
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+        'uploadUrl': 'assets/',
+        'filebrowserUploadUrl': 'assets/',
+        'imageUploadUrl': 'assets/',
+        'startupFocus': True,
+    }
+}

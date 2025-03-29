@@ -1,29 +1,59 @@
 from django.contrib import admin
-from .models import WorkingExperience, SkillSet, Portfolio, Article, Testimony
+from django.utils.html import format_html
+from .models import (
+    WorkingExperience,
+    SkillSet,
+    Portfolio,
+    Article,
+    Testimony,
+    PortfolioImages,
+)
 
 
 # Register your models here.
 class WorkingExperienceAdmin(admin.ModelAdmin):
     list_display = [
-        'role',
-        'company',
-        'region',
-        'start_date',
-        'end_date',
+        "role",
+        "company",
+        "region",
+        "start_date",
+        "end_date",
     ]
 
-    search_fields = ['role']
+    search_fields = ["role"]
+
 
 class SkillSetsAdmin(admin.ModelAdmin):
-    pass
+    list_display = [
+        "name",
+        "level",
+        "image",
+    ]
+
+    search_fields = ["name"]
+
+    def image_tag(self, obj):
+        return format_html('<img style="width:50px;" src="{}" />'.format(obj.image.url))
+
+    image_tag.short_description = "Image"
+
+
+class PortfolioImageAdmin(admin.StackedInline):
+    model = PortfolioImages
 
 
 class PortfolioAdmin(admin.ModelAdmin):
-    pass
+    inlines = [PortfolioImageAdmin]
+    list_display = [
+        "title",
+    ]
 
 
 class ArticleAdmin(admin.ModelAdmin):
-    pass
+    list_display = ["title", "image", "summary_content"]
+
+    def summary_content(self, obj):
+        return obj.content[:50]
 
 
 class TestimonyAdmin(admin.ModelAdmin):
