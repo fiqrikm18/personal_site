@@ -1,6 +1,5 @@
 from django.views.generic import TemplateView
 from django.http import JsonResponse
-from django.forms.models import model_to_dict
 from system_details.models import WorkingExperience, SkillSet, Portfolio, PortfolioImages
 from enum import Enum
 
@@ -13,7 +12,6 @@ class ResponseMessage(Enum):
     FAILED = "Failed"
 
 
-# Create your views here.
 class LandingPageView(TemplateView):
     template_name = "index.html"
 

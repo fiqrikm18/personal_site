@@ -184,12 +184,14 @@
     </section>
 
     <div id="modal" class="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50 hidden">
-        <div class="bg-white p-6 rounded-md shadow-md max-w-sm min-w-[80vw]">
+        <div class="bg-white p-6 rounded-md shadow-md max-w-sm min-w-[80vw] max-h-[100vh] min-h-[80vh]">
             <h2 class="text-xl font-bold" id="modal_title"></h2>
             <h2 class="text-md font-bold mb-4 text-gray-500" id="modal_company"></h2>
-            <div id="modal_carousel"></div>
-            <p class="text-gray-700 mb-4 overflow-scroll" id="modal_body"></p>
-            <div class="flex justify-end">
+            <div class="overflow-scroll flex flex-col h-[75vh]">
+                <div id="modal_carousel" class="mb-8"></div>
+                <p class="text-gray-700 mb-4" id="modal_body"></p>
+            </div>
+            <div class="flex justify-end mt-4">
                 <button id="close_modal" class="px-4 py-2 text-white bg-red-600 rounded-lg hover:bg-red-700">
                     Close
                 </button>
@@ -204,13 +206,19 @@
         $(document).ready(function() {
             $(document).on('click', '#close_modal', function() {
                 $('#modal').addClass('opacity-0');
+                $('body').css('overflow', 'auto');
                 setTimeout(() => {
                     $('#modal').addClass('hidden');
                 }, 300);
             });
 
+            $(document).on('click', '#img_preview_list', function () {
+                $("#modal").find('#modal_carousel').find('#img_preview_showcase').attr('src', $(this).attr('data-img'));
+            });
+
             $(document).on("click", "#show_portpolio_detail", function () {
                 const id = $(this).attr('data-id');
+                $('body').css('overflow', 'hidden');
 
                 $.ajax({
                     type: "GET",
@@ -224,7 +232,30 @@
                             <p>${response.data.company}, ${projectYear}</p>
                         `);
 
-                        // $("#modal").find('#modal_carousel')
+                        let images = [];
+                        let carouselImageContainer = "";
+                        response.data.images.forEach(image => {
+                            images.push(`assets/${image}`)
+                        });
+
+                        $("#modal").find('#modal_carousel').addClass('flex flex-row gap-4 h-[50vh]');
+                        carouselImageContainer += `
+                            <div class="w-full justify-center items-center">
+                                <img src="${images[0]}" alt="" class="object-contain w-full shadow-md rounded-md h-full" id="img_preview_showcase" data-id="${images[0]}" data-img=${images[0]}/>
+                            </div>
+                        `
+
+                        carouselImageContainer += `<div class="flex flex-col w-1/5 overflow-scroll gap-4">`;
+                        images.forEach((image, idx) => {
+                            carouselImageContainer += `
+                                <div class="w-full">
+                                    <img src="${image}" alt="" class="shadow-md rounded-md hover:cursor-pointer" id="img_preview_list" data-id="${idx}" data-img=${image}/>
+                                </div>
+                            `;
+                        });
+                        carouselImageContainer += `</div>`;
+
+                        $("#modal").find('#modal_carousel').html(carouselImageContainer);
                         $("#modal").removeClass("opacity-0");
                         setTimeout(() => {
                             $("#modal").removeClass("hidden");
