@@ -84,7 +84,7 @@
 
     <section id="selected_works" class="min-h-screen w-screen bg-brown-50 px-10 py-28 text-gray-700">
         <h1 class="text-center text-4xl capitalize mb-16">selected works</h1>
-        <div class="grid grid-cols-3 px-24 gap-4 p-4">
+        <div class="grid grid-cols-1 px-24 gap-4 p-4 md:grid-cols-2 lg:grid-cols-3">
             {%for portfolio in portfolios%}
                 <div class="bg-white rounded-md shadow-md p-6 text-gray-700 max-h-[800px] flex flex-col justify-between">
                     <img src="/assets/{{ portfolio.portfolioimages_set.first.file }}" alt="" class="rounded-md mb-4 tex-center w-screen object-cover h-[400px] w-[600px]">
@@ -98,12 +98,12 @@
 
                     <p class="mb-4">
                         {% autoescape off %}
-                            {{ portfolio.summary|truncatewords:30 }}
+                            {{ portfolio.summary|truncatewords:20 }}
                         {% endautoescape %}
                     </p>
 
                     <div class="flex gap-4">
-                        <button class="w-fit py-2 px-3 bg-gray-700 hover:bg-gray-800  text-white rounded-md" id="show_portpolio_detail" data-id={{portfolio.id}}>
+                        <button class="w-fit py-2 px-3 bg-gray-700 hover:bg-gray-800  text-white rounded-md" id="show_portfolio_detail" data-id={{portfolio.id}}>
                             View details work
                         </button>
                         {% if portfolio.url is not None %}
@@ -124,7 +124,7 @@
 
     <section id="selected_works" class="w-screen bg-brown-50 px-10 py-28 text-gray-700">
         <h1 class="text-center text-4xl capitalize mb-16">Articles</h1>
-        <div class="grid grid-cols-4 px-24 gap-4 p-4">
+        <div class="grid grid-cols-1 px-24 gap-4 p-4 md:grid-cols-2 lg:grid-cols-3">
             <div class="bg-white rounded-md shadow-md p-4 text-gray-700">
                 <img src="https://placehold.co/600x400" alt="" class="rounded-md mb-4">
                 <p class="mb-4">Article Title</p>
@@ -216,7 +216,7 @@
                 $("#modal").find('#modal_carousel').find('#img_preview_showcase').attr('src', $(this).attr('data-img'));
             });
 
-            $(document).on("click", "#show_portpolio_detail", function () {
+            $(document).on("click", "#show_portfolio_detail", function () {
                 const id = $(this).attr('data-id');
                 $('body').css('overflow', 'hidden');
 
@@ -228,9 +228,7 @@
                         const projectYear = new Date(response.data.year).getFullYear();
                         $("#modal").find('#modal_title').html(response.data.title);
                         $("#modal").find('#modal_body').html(response.data.description);
-                        $("#modal").find('#modal_company').html(`
-                            <p>${response.data.company}, ${projectYear}</p>
-                        `);
+                        $("#modal").find('#modal_company').html(`<p>${response.data.company}, ${projectYear}</p>`);
 
                         let images = [];
                         let carouselImageContainer = "";
